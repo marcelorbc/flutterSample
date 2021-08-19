@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:natura_on_track/generated/l10n.dart';
+import 'package:natura_on_track/src/features/core/login/Login.dart';
+import 'package:natura_on_track/src/helpers/NavigatorNatura.dart';
 import 'src/helpers/Globals.dart';
 
 void main() async {
@@ -58,8 +60,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      initialRoute: Globals.initialRoute,
-      routes: Globals.routes,
+      home: Login(),
     );
   }
 }

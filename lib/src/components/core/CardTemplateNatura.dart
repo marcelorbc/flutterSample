@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:natura_on_track/src/components/core/CardArguments.dart';
+import 'package:natura_on_track/src/helpers/NavigatorNatura.dart';
 
 class CardTemplateNatura extends StatefulWidget {
   final int id;
@@ -35,15 +36,12 @@ class _CardTemplateNaturaState extends State<CardTemplateNatura> {
     if (null != widget.image) {
       children.add(InkWell(
         onTap: () {
-          print("card detail");
-          Navigator.of(context).pushNamed(
-            "/cardDetail",
-            arguments: CardArguments(
-              title: widget.title,
-              cardImage: cardImage!,
-              tagId: 'card ${widget.id}',
-            ),
-          );
+          NavigatorNatura.pushCardDetail(context,
+              arguments: CardArguments(
+                title: widget.title,
+                cardImage: cardImage!,
+                tagId: 'card ${widget.id}',
+              ));
         },
         child: Padding(
           padding: const EdgeInsets.all(1.0),

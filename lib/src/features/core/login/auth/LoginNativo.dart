@@ -38,7 +38,7 @@ class _LoginNativoState extends State<LoginNativo> {
 
     Container logo = Container(
       child: Padding(
-        padding: const EdgeInsets.only(top: 35, bottom: 70),
+        padding: const EdgeInsets.only(top: 50, bottom: 70),
         child: SizedBox(
           width: 150,
           height: 125,
@@ -81,53 +81,51 @@ class _LoginNativoState extends State<LoginNativo> {
       ),
     );
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.grey.shade100,
-        body: Center(
-          child: Column(
-            children: [
-              logo,
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: inputUserName,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: passwordInput,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 50, top: 55),
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: new RichText(
-                            text: new TextSpan(
-                              children: [
-                                new TextSpan(
-                                  text: 'Primeiro acesso ou Esqueci Minha Senha',
-                                  style: new TextStyle(fontSize: 15, decoration: TextDecoration.underline, fontWeight: FontWeight.bold, color: Colors.grey.shade500),
-                                ),
-                              ],
-                            ),
+    return Scaffold(
+      backgroundColor: Colors.grey.shade100,
+      body: Center(
+        child: Column(
+          children: [
+            logo,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: inputUserName,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: passwordInput,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 50, top: 55),
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: new RichText(
+                          text: new TextSpan(
+                            children: [
+                              new TextSpan(
+                                text: 'Primeiro acesso ou Esqueci Minha Senha',
+                                style: new TextStyle(fontSize: 15, decoration: TextDecoration.underline, fontWeight: FontWeight.bold, color: Colors.grey.shade500),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      Center(child: flag)
-                    ],
-                  ),
+                    ),
+                    Center(child: flag)
+                  ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(15),
-                child: enterButton,
-              ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: enterButton,
+            ),
+          ],
         ),
       ),
     );
