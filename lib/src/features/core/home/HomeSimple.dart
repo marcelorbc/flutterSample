@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:natura_on_track/src/components/core/CardTemplateNatura.dart';
-import 'package:natura_on_track/src/components/templates/body/BodyWithShortcuts.dart';
-import 'package:natura_on_track/src/components/templates/pages/PageWithTopAndBottomBars.dart';
-import 'package:natura_on_track/src/features/core/menu/MenuDrawer.dart';
-import 'package:natura_on_track/src/helpers/DialogNatura.dart';
-import 'package:natura_on_track/src/helpers/LocalStorage.dart';
+import 'package:gxp/src/features/core/cards/CardTemplateNatura.dart';
+import 'package:gxp/src/components/templates/body/BodyWithShortcuts.dart';
+import 'package:gxp/src/components/templates/pages/PageWithTopAndBottomBars.dart';
+import 'package:gxp/src/features/core/menu/menu.dart';
+import 'package:gxp/src/helpers/DialogNatura.dart';
+import 'package:gxp/src/helpers/LocalStorage.dart';
 
 class HomeSimple extends StatefulWidget {
   @override
@@ -17,13 +17,12 @@ class _HomeSimpleState extends State<HomeSimple> {
 
   @override
   Widget build(BuildContext context) {
-    var localStorage = new LocalStorage();
-    var pais = localStorage.getValueString('country');
+    var pais = LocalStorage.getValueString('country');
 
     return PageWithTopAndBottomBars(
       showButtonBar: true,
       bottomSelectedIndex: 0,
-      drawer: MenuDrawer(),
+      drawer: MenuDrawer(LocalStorage.getBusinessUnit()!, LoadMenuImpl(repository: MenuRepositoryHardCoded())),
       actions: [
         Padding(
           padding: EdgeInsets.only(right: 20.0),

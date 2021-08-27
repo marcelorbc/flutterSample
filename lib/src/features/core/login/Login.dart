@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:natura_on_track/generated/l10n.dart';
-import 'package:natura_on_track/src/helpers/CountryConfig.dart';
-import 'package:natura_on_track/src/helpers/LocalStorage.dart';
-import 'package:natura_on_track/src/features/core/login/auth/LoginWebView.dart';
+import 'package:gxp/generated/l10n.dart';
+import 'package:gxp/src/helpers/CountryConfig.dart';
+import 'package:gxp/src/helpers/LocalStorage.dart';
+import 'package:gxp/src/features/core/login/auth/LoginWebView.dart';
 
 import 'countryList/ListaPaises.dart';
 import 'auth/LoginNativo.dart';
@@ -17,8 +17,7 @@ class _LoginState extends State<Login> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var localStorage = new LocalStorage();
-    var pais = localStorage.getValueString('country');
+    var pais = LocalStorage.getValueString('country');
     Widget widgetResult;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

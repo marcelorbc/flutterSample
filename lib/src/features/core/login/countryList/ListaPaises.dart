@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:natura_on_track/src/helpers/CountryConfig.dart';
-import 'package:natura_on_track/src/helpers/LocalStorage.dart';
-import 'package:natura_on_track/extensions/ListFromMap.dart';
+import 'package:gxp/src/helpers/CountryConfig.dart';
+import 'package:gxp/src/helpers/LocalStorage.dart';
+import 'package:gxp/extensions/ListFromMap.dart';
 
 class ListaPaises extends StatefulWidget {
   ListaPaises({required this.onSelectCountry});
@@ -59,7 +59,7 @@ class _ListaPaisesState extends State<ListaPaises> {
                     ),
                   ),
                   onPressed: () {
-                    localStorage.setValueString('country', paises[index]['code']);
+                    LocalStorage.setValueString('country', paises[index]['code']);
                     widget.onSelectCountry(paises[index]['code'], paises[index]['lang']);
                   },
                 ),

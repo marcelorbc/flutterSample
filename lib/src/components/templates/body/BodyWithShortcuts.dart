@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:natura_on_track/src/components/core/ShortcutsNatura.dart';
+import 'package:gxp/src/features/core/shortcuts/ShortcutsNatura.dart';
 
 class BodyWithShortcuts extends StatelessWidget {
   final Widget child;

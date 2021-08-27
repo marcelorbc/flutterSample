@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:natura_on_track/src/components/core/BottomBarNatura.dart';
-import 'package:natura_on_track/src/helpers/NatDSIcons.dart';
+import 'package:gxp/src/features/core/bottomBar/BottomBarNatura.dart';
+import 'package:gxp/src/helpers/NatDSIcons.dart';
 
 class PageWithTopAndBottomBars extends StatefulWidget {
   final Widget child;

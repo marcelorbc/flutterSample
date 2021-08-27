@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:natura_on_track/src/components/core/CardArguments.dart';
-import 'package:natura_on_track/src/components/templates/pages/PageWithTopAndBottomBars.dart';
+import 'package:gxp/src/features/core/cards/CardArguments.dart';
+import 'package:gxp/src/components/templates/pages/PageWithTopAndBottomBars.dart';
 
 class CardDetail extends StatelessWidget {
   final CardArguments arguments;

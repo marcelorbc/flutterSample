@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:natura_on_track/src/components/core/CardArguments.dart';
-import 'package:natura_on_track/src/helpers/NavigatorNatura.dart';
+import 'package:gxp/src/features/core/cards/CardArguments.dart';
+import 'package:gxp/src/helpers/NavigatorNatura.dart';
 
 class CardTemplateNatura extends StatefulWidget {
   final int id;

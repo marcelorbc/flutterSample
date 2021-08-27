@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:natura_on_track/src/helpers/Globals.dart';
-import 'package:natura_on_track/src/helpers/NavigatorNatura.dart';
+import 'package:gxp/src/helpers/NatDSIcons.dart';
+import 'package:gxp/src/helpers/NavigatorNatura.dart';
 import 'package:page_transition/page_transition.dart';
 
 class BottomBarNatura extends StatefulWidget {
@@ -31,8 +31,10 @@ class _BottomBarNaturaState extends State<BottomBarNatura> {
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: colorScheme.surface,
+        iconSize: 175,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         selectedItemColor: Colors.orange.shade300,
-        unselectedItemColor: colorScheme.onSurface.withOpacity(.60),
         selectedLabelStyle: textTheme.caption,
         unselectedLabelStyle: textTheme.caption,
         enableFeedback: true,
@@ -51,33 +53,18 @@ class _BottomBarNaturaState extends State<BottomBarNatura> {
             NavigatorNatura.pushProfile(context);
           }
           if (value == 4) {
-            NavigatorNatura.pushMenu(context, type: PageTransitionType.bottomToTop, duration: Duration(milliseconds: 300));
+            NavigatorNatura.pushMenu(context, type: PageTransitionType.bottomToTop, duration: Duration(milliseconds: 200));
           }
           if (value == 5) {
             NavigatorNatura.pushLogin(context);
           }
         },
         items: [
-          BottomNavigationBarItem(
-            label: 'Inicio',
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: 'Mis Pedidos',
-            icon: Icon(Icons.all_inbox_outlined),
-          ),
-          BottomNavigationBarItem(
-            label: 'Perfil',
-            icon: Icon(Icons.account_circle_sharp),
-          ),
-          BottomNavigationBarItem(
-            label: 'Mis Posteos',
-            icon: Icon(Icons.photo_library),
-          ),
-          BottomNavigationBarItem(
-            label: 'Menu',
-            icon: Icon(Icons.list),
-          )
+          BottomNavigationBarItem(label: 'Inicio', icon: NatDSIcons.outlinedNavigationHome(color: Colors.grey.shade400, width: 30, height: 30)),
+          BottomNavigationBarItem(label: 'Mis Pedidos', icon: NatDSIcons.outlinedActionNewrequest(color: Colors.grey.shade400, width: 30, height: 30)),
+          BottomNavigationBarItem(label: 'Perfil', icon: NatDSIcons.outlinedSocialPerson(color: Colors.grey.shade400, width: 30, height: 30)),
+          BottomNavigationBarItem(label: 'Mis Posteos', icon: NatDSIcons.outlinedContentDivulgation(color: Colors.grey.shade400, width: 30, height: 30)),
+          BottomNavigationBarItem(label: 'Menu', icon: NatDSIcons.outlinedNavigationMenu(color: Colors.grey.shade400, width: 30, height: 30))
         ],
       ),
     );

@@ -3,11 +3,11 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Globals {
-  static SharedPreferences? globalLocalStorage;
+  static SharedPreferences? localStorage;
   static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   static Future init() async {
     Intl.defaultLocale = 'en';
-    globalLocalStorage = await SharedPreferences.getInstance();
+    localStorage = await SharedPreferences.getInstance();
   }
 }
