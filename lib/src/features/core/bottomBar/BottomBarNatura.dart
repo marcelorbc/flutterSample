@@ -1,24 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gxp/src/helpers/NatDSIcons.dart';
-import 'package:gxp/src/helpers/NavigatorNatura.dart';
+import 'package:gxp/src/components/templates/widgets_core/stateful_widget_nat.dart';
+import 'package:gxp/src/designsystem/ds.dart';
+import 'package:gxp/src/helpers/local_storage.dart';
+import 'package:gxp/src/helpers/nativigator.dart';
 import 'package:page_transition/page_transition.dart';
 
-class BottomBarNatura extends StatefulWidget {
+class BottomBarNatura extends StatefullWidgetNatura {
   final int currentIndex;
+  final Natvigator natvigator;
 
-  BottomBarNatura({required this.currentIndex});
+  BottomBarNatura(DesignSystem designSystem, {required this.currentIndex, required this.natvigator}) : super(designSystem: designSystem);
 
   @override
   State<StatefulWidget> createState() => _BottomBarNaturaState();
 }
 
 class _BottomBarNaturaState extends State<BottomBarNatura> {
+  Color _getColor(int index) => widget.currentIndex == index ? widget.designSystem.getColors().bottomBarSelectedIcon : widget.designSystem.getColors().bottomBarUnselectedIcon;
+
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -30,13 +32,14 @@ class _BottomBarNaturaState extends State<BottomBarNatura> {
       ),
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: colorScheme.surface,
-        iconSize: 175,
+        backgroundColor: widget.designSystem.getColors().appBarBackground,
+        selectedItemColor: widget.designSystem.getColors().bottomBarSelectedIcon,
+        selectedLabelStyle: TextStyle(
+          color: Colors.red,
+        ),
+        unselectedLabelStyle: TextStyle(color: Colors.red),
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        selectedItemColor: Colors.orange.shade300,
-        selectedLabelStyle: textTheme.caption,
-        unselectedLabelStyle: textTheme.caption,
         enableFeedback: true,
         currentIndex: widget.currentIndex,
         onTap: (value) {
@@ -44,27 +47,27 @@ class _BottomBarNaturaState extends State<BottomBarNatura> {
             return;
           }
           if (value == 0) {
-            NavigatorNatura.pushHome(context);
+            widget.natvigator.pushHome(context);
           }
           if (value == 1) {
-            NavigatorNatura.pushOrder(context);
+            widget.natvigator.pushOrder(context);
           }
           if (value == 2) {
-            NavigatorNatura.pushProfile(context);
+            widget.natvigator.pushProfile(context);
           }
           if (value == 4) {
-            NavigatorNatura.pushMenu(context, type: PageTransitionType.bottomToTop, duration: Duration(milliseconds: 200));
+            widget.natvigator.pushMenu(context, LocalStorage.getBusinessUnit()!, type: PageTransitionType.bottomToTop, duration: Duration(milliseconds: 200));
           }
           if (value == 5) {
-            NavigatorNatura.pushLogin(context);
+            widget.natvigator.pushLogin(context);
           }
         },
         items: [
-          BottomNavigationBarItem(label: 'Inicio', icon: NatDSIcons.outlinedNavigationHome(color: Colors.grey.shade400, width: 30, height: 30)),
-          BottomNavigationBarItem(label: 'Mis Pedidos', icon: NatDSIcons.outlinedActionNewrequest(color: Colors.grey.shade400, width: 30, height: 30)),
-          BottomNavigationBarItem(label: 'Perfil', icon: NatDSIcons.outlinedSocialPerson(color: Colors.grey.shade400, width: 30, height: 30)),
-          BottomNavigationBarItem(label: 'Mis Posteos', icon: NatDSIcons.outlinedContentDivulgation(color: Colors.grey.shade400, width: 30, height: 30)),
-          BottomNavigationBarItem(label: 'Menu', icon: NatDSIcons.outlinedNavigationMenu(color: Colors.grey.shade400, width: 30, height: 30))
+          BottomNavigationBarItem(label: 'Inicio', icon: widget.designSystem.getIcons().outlinedNavigationHome(color: _getColor(0), width: 30, height: 30)),
+          BottomNavigationBarItem(label: 'Mis Pedidos', icon: widget.designSystem.getIcons().outlinedActionNewrequest(color: _getColor(1), width: 30, height: 30)),
+          BottomNavigationBarItem(label: 'Perfil', icon: widget.designSystem.getIcons().outlinedSocialPerson(color: _getColor(2), width: 30, height: 30)),
+          BottomNavigationBarItem(label: 'Mis Posteos', icon: widget.designSystem.getIcons().outlinedContentDivulgation(color: _getColor(3), width: 30, height: 30)),
+          BottomNavigationBarItem(label: 'Menu', icon: widget.designSystem.getIcons().outlinedNavigationMenu(color: _getColor(4), width: 30, height: 30))
         ],
       ),
     );

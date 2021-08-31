@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gxp/src/helpers/CountryConfig.dart';
-import 'package:gxp/src/helpers/LocalStorage.dart';
+import 'package:gxp/src/helpers/country_config.dart';
+import 'package:gxp/src/helpers/local_storage.dart';
 import 'package:gxp/extensions/ListFromMap.dart';
 
 class ListaPaises extends StatefulWidget {

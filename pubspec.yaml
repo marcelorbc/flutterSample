@@ -38,6 +38,8 @@ dependencies:
   flutter_launcher_icons:
   webview_flutter: ^2.0.12
   dartz:
+  flutter_dotenv: ^5.0.2
+  flutter_html: ^0.8.2 
   
 
 dev_dependencies:
@@ -57,8 +59,10 @@ flutter:
     - lib/assets/icons/svg/
     - lib/assets/images/
     - lib/assets/images/flags/
+    - lib/assets/images/profile/
     - lib/assets/logo/
     - lib/assets/logo/svg/
+    - .env 
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

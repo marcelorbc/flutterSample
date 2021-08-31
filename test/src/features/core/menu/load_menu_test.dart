@@ -24,14 +24,15 @@ main() {
         Menu(
           businessUnit: businessUnit,
           me: MenuItem(
+            id: 0,
             label: 'Menu',
             position: 0,
             route: '/',
             children: [
-              MenuItem(label: 'home', position: 1, route: '/home'),
-              MenuItem(label: 'pedidos', position: 1, route: '/pedidos', children: [
-                MenuItem(label: 'orders', position: 1, route: '/orders'),
-                MenuItem(label: 'newOrder', position: 1, route: '/newOrder'),
+              MenuItem(id: 1, label: 'home', position: 1, route: '/home'),
+              MenuItem(id: 1, label: 'pedidos', position: 1, route: '/pedidos', children: [
+                MenuItem(id: 1, label: 'orders', position: 1, route: '/orders'),
+                MenuItem(id: 1, label: 'newOrder', position: 1, route: '/newOrder'),
               ])
             ],
           ),

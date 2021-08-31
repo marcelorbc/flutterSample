@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:gxp/src/helpers/LocalStorage.dart';
+import 'package:gxp/src/helpers/local_storage.dart';
 
 class LoginWebView extends StatelessWidget {
   Widget build(BuildContext context) {

@@ -1,16 +1,19 @@
 import 'package:dartz/dartz.dart' as dartz;
 import 'package:flutter/material.dart';
+import 'package:gxp/src/components/templates/widgets_core/stateful_widget_nat.dart';
+import 'package:gxp/src/designsystem/design_system.dart';
 import 'package:gxp/src/features/commons/commons.dart';
 import 'package:gxp/src/features/core/menu/Menu.dart';
-import 'package:gxp/src/helpers/DialogNatura.dart';
-import 'package:gxp/src/helpers/NatDSIcons.dart';
-import 'package:gxp/src/helpers/NavigatorNatura.dart';
+import 'package:gxp/src/helpers/dialog_natura.dart';
+import 'package:gxp/src/helpers/nativigator.dart';
 
-class MenuTilesWidget extends StatefulWidget {
-  const MenuTilesWidget({required this.generateListView, required this.loadMenu, required this.businessUnit});
+class MenuTilesWidget extends StatefullWidgetNatura {
+  MenuTilesWidget({required this.generateListView, required this.loadMenu, required this.businessUnit, required this.designSystem, required this.natvigator}) : super(designSystem: designSystem);
   final bool generateListView;
   final LoadMenu loadMenu;
   final BusinessUnit businessUnit;
+  final DesignSystem designSystem;
+  final Natvigator natvigator;
 
   _MenuTilesWidgetState createState() => _MenuTilesWidgetState();
 }
@@ -19,22 +22,19 @@ class _MenuTilesWidgetState extends State<MenuTilesWidget> {
   bool menuLoaded = false;
   Menu? menu;
 
-  void onTapActions(context, element, index) async {
-    if (element['id'] == 99) {
-      await DialogNatura.showDialogNatura(
-        context: context,
-        title: 'Tem certeza que deseja fechar sua sessão?',
-        cancel: () => Navigator.of(context).pop(false),
-        confirm: () => NavigatorNatura.pushLogin(context),
-      );
-    } else if (element['id'] == 1) {
-      NavigatorNatura.pushHome(context);
-    } else if (element['id'] == 2) {
-      NavigatorNatura.pushProfile(context);
+  void onTapActions(context, MenuItem element, index) async {
+    if (element.id == 99) {
+      await DialogNatura(widget.designSystem, context).showDialogExitApp(() => widget.natvigator.pushLogin(context));
+    } else if (element.id == 1) {
+      widget.natvigator.pushHome(context);
+    } else if (element.id == 2) {
+      widget.natvigator.pushProfile(context);
     } else {
-      NavigatorNatura.push(route: element['route'], context: context);
+      //widget.natvigator.push(route: element.route context: context);
     }
-    Scaffold.of(context).openEndDrawer();
+    if (Scaffold.of(context).isDrawerOpen) {
+      Scaffold.of(context).openEndDrawer();
+    }
   }
 
   @override
@@ -63,7 +63,7 @@ class _MenuTilesWidgetState extends State<MenuTilesWidget> {
 
           Widget? icon;
           if (menuItem.icon != null) {
-            icon = NatDSIcons.load(menuItem.icon!, Colors.orange.shade700);
+            icon = widget.designSystem.getIcons().load(menuItem.icon!, widget.designSystem.getColors().icons);
           } else {
             icon = null;
           }
@@ -82,26 +82,29 @@ class _MenuTilesWidgetState extends State<MenuTilesWidget> {
         },
       );
     } else {
-      return Container(child: Text("Menu error"));
-    }
-/*
-    if (!widget.generateListView) {
       var result = [];
-
-      menus.forEach((element) {
-        result.add(Container(
-            decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
-            child: ListTile(
-              leading: element['icon'] as Widget,
-              tileColor: Colors.white,
-              onTap: () => onTapActions(context, element, menus.indexOf(element)),
-              title: Text(element['text'].toString()),
-            )));
+      menu!.me.children!.forEach((MenuItem element) {
+        if (element.icon == null) {
+          result.add(Container(
+              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
+              child: ListTile(
+                tileColor: Colors.white,
+                onTap: () => onTapActions(context, element, menu!.me.children!.indexOf(element)),
+                title: Text(element.label),
+              )));
+        } else {
+          result.add(Container(
+              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
+              child: ListTile(
+                leading: widget.designSystem.getIcons().load(element.icon!, widget.designSystem.getColors().icons),
+                tileColor: Colors.white,
+                onTap: () => onTapActions(context, element, menu!.me.children!.indexOf(element)),
+                title: Text(element.label),
+              )));
+        }
       });
 
       return Column(children: result.cast<Widget>());
-    } else {
-      return 
-    }*/
+    }
   }
 }

@@ -2,5 +2,6 @@
     "@@locale" : "pt",
     "loginConsultantCode" : "Código da consultora",
     "loginPassword" : "Senha de acesso",
-    "helloWorld" : "Hellow world pt"
+    "helloWorld" : "Hellow world pt",
+    "exitSession" : "Deseja realmente encerrar está sessão ?"
 }

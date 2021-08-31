@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:gxp/src/components/templates/widgets_core/stateless_widget_nat.dart';
+import 'package:gxp/src/designsystem/ds.dart';
 import 'package:gxp/src/features/commons/commons.dart';
 import 'package:gxp/src/features/core/menu/Menu.dart';
-import 'package:gxp/src/helpers/LocalStorage.dart';
+import 'package:gxp/src/helpers/local_storage.dart';
+import 'package:gxp/src/helpers/nativigator.dart';
 import 'menu_tiles_widget.dart';
 
-class MenuDrawer extends StatelessWidget {
+class MenuDrawer extends StatelessWidgetNatura {
+  final Natvigator natvigator;
   final BusinessUnit businessUnit;
   final LoadMenu loadMenu;
+  final DesignSystem designSystem;
 
-  MenuDrawer(this.businessUnit, this.loadMenu);
+  MenuDrawer(this.businessUnit, this.loadMenu, {required this.designSystem, required this.natvigator}) : super(designSystem: designSystem);
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +28,16 @@ class MenuDrawer extends StatelessWidget {
             children: <Widget>[
               UserAccountsDrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.orange.shade900,
+                  color: designSystem.getColors().drawerheaderBackground,
                 ),
-                accountName: Text(authResponse == null ? 'Sem nome' : authResponse.name),
-                accountEmail: Text(authResponse == null ? 'Sem nome' : authResponse.email),
+                accountName: Text(
+                  authResponse == null ? 'Sem nome' : authResponse.name,
+                  style: TextStyle(color: designSystem.getColors().drawerheaderText),
+                ),
+                accountEmail: Text(
+                  authResponse == null ? 'Sem nome' : authResponse.email,
+                  style: TextStyle(color: designSystem.getColors().drawerheaderText),
+                ),
                 currentAccountPicture: CircleAvatar(
                   radius: 15.0,
                   backgroundImage: authResponse != null && authResponse.image.isNotEmpty ? NetworkImage(authResponse.image) : null,
@@ -35,6 +46,8 @@ class MenuDrawer extends StatelessWidget {
                 ),
               ),
               MenuTilesWidget(
+                natvigator: natvigator,
+                designSystem: designSystem,
                 businessUnit: businessUnit,
                 loadMenu: loadMenu,
                 generateListView: false,

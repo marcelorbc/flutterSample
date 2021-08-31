@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:gxp/src/components/templates/widgets_core/stateful_widget_nat.dart';
+import 'package:gxp/src/designsystem/ds.dart';
 import 'package:gxp/src/features/core/cards/CardArguments.dart';
-import 'package:gxp/src/helpers/NavigatorNatura.dart';
+import 'package:gxp/src/helpers/nativigator.dart';
+import 'package:flutter_html/flutter_html.dart';
 
-class CardTemplateNatura extends StatefulWidget {
-  final int id;
+class CardTemplateNatura extends StatefullWidgetNatura {
+  final String id;
+  final String? icon;
   final String title;
   final String subTitle;
   final String text;
   final String? image;
+  final Natvigator natvigator;
 
-  CardTemplateNatura({
-    Key? key,
-    required this.title,
-    required this.subTitle,
-    required this.text,
-    this.image,
-    required this.id,
-  }) : super(key: key);
+  CardTemplateNatura(DesignSystem ds, {this.icon, required this.natvigator, Key? key, required this.title, required this.subTitle, required this.text, this.image, required this.id}) : super(designSystem: ds);
 
   @override
   _CardTemplateNaturaState createState() => _CardTemplateNaturaState();
@@ -29,17 +27,18 @@ class _CardTemplateNaturaState extends State<CardTemplateNatura> {
     Widget? cardImage;
 
     children.add(ListTile(
-      title: Text(widget.title),
+      leading: (widget.icon == null ? null : CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: NetworkImage(widget.icon!))),
+      title: Html(data: widget.title),
       subtitle: Text(widget.subTitle),
     ));
 
     if (null != widget.image) {
       children.add(InkWell(
         onTap: () {
-          NavigatorNatura.pushCardDetail(context,
+          widget.natvigator.pushCardDetail(context,
               arguments: CardArguments(
                 title: widget.title,
-                cardImage: cardImage!,
+                cardImage: Image.network(widget.image!),
                 tagId: 'card ${widget.id}',
               ));
         },
@@ -48,10 +47,7 @@ class _CardTemplateNaturaState extends State<CardTemplateNatura> {
           child: SizedBox(
             height: 200,
             width: double.infinity,
-            child: cardImage = Image.asset(
-              widget.image!,
-              isAntiAlias: true,
-            ),
+            child: Image.network(widget.image!),
           ),
         ),
       ));
@@ -59,41 +55,16 @@ class _CardTemplateNaturaState extends State<CardTemplateNatura> {
 
     children.add(Padding(
       padding: EdgeInsets.all(5),
-      child: Text(widget.text),
-    ));
-
-    children.add(
-      ButtonBar(
-        alignment: MainAxisAlignment.start,
-        children: [
-          TextButton(
-            style: ButtonStyle(),
-            onPressed: () {
-              print("card detail");
-              Navigator.of(context).pushNamed(
-                "/cardDetail",
-                arguments: CardArguments(
-                  title: widget.title,
-                  cardImage: cardImage!,
-                  tagId: 'card ${widget.id}',
-                ),
-              );
-            },
-            child: const Text('ACTION 1'),
-          ),
-          TextButton(
-            style: ButtonStyle(),
-            onPressed: () {},
-            child: const Text('ACTION 2'),
-          ),
-        ],
+      child: Text(widget.text,
+        style: TextStyle(fontSize: 11),
       ),
-    );
+    ));
 
     return Hero(
       tag: 'card ${widget.id}',
       transitionOnUserGestures: true,
       child: Card(
+        color: widget.designSystem.getColors().backgroundCard,
         child: SizedBox(
           width: double.infinity,
           child: Column(

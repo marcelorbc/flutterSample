@@ -2,5 +2,6 @@
     "@@locale" : "pt_BR",
     "loginConsultantCode" : "Código da consultora",
     "loginPassword" : "Senha de acesso",
-    "helloWorld" : "Vai brasil"
+    "helloWorld" : "hello world",
+    "exitSession" : "Deseja realmente encerrar está sessão ?"
 }

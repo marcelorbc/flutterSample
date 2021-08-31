@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gxp/generated/l10n.dart';
+import 'package:gxp/src/components/templates/widgets_core/stateful_widget_nat.dart';
+import 'package:gxp/src/designsystem/design_system.dart';
 import 'package:gxp/src/features/commons/entities/commons_entities.dart';
-import 'package:gxp/src/helpers/LocalStorage.dart';
-import 'package:gxp/src/helpers/NatdsIcons.dart';
-import 'package:gxp/src/helpers/NavigatorNatura.dart';
+import 'package:gxp/src/helpers/local_storage.dart';
+import 'package:gxp/src/helpers/nativigator.dart';
 import 'package:http/http.dart' as http;
 
 class AuthResponse {
@@ -41,10 +42,12 @@ class AuthResponse {
       };
 }
 
-class LoginNativo extends StatefulWidget {
-  LoginNativo({required this.onSelectCountryToChange});
+class LoginNativo extends StatefullWidgetNatura {
+  LoginNativo({required this.natvigator, required this.onSelectCountryToChange, required this.designSystem}) : super(designSystem: designSystem);
 
   final Function onSelectCountryToChange;
+  final DesignSystem designSystem;
+  final Natvigator natvigator;
   @override
   State<StatefulWidget> createState() => _LoginNativoState();
 }
@@ -65,11 +68,17 @@ class _LoginNativoState extends State<LoginNativo> {
     var pais = LocalStorage.getValueString('country');
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.grey.shade100, //or set color with: Color(0xFF0000FF)
+      statusBarColor: widget.designSystem.getColors().appBarBackground, //or set color with: Color(0xFF0000FF)
     ));
 
     TextField inputUserName = TextField(
-      decoration: InputDecoration(border: OutlineInputBorder(), filled: false, fillColor: Colors.white, labelText: S.of(context).helloWorld, hintText: 'informe seu codigo de consultora'),
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        filled: false,
+        fillColor: Colors.white,
+        labelText: S.of(context).helloWorld,
+        hintText: 'informe seu codigo de consultora',
+      ),
     );
 
     TextField passwordInput = TextField(
@@ -88,7 +97,7 @@ class _LoginNativoState extends State<LoginNativo> {
             child: SizedBox(
               width: 150,
               height: 125,
-              child: NatDSIcons.naturaBCustom(width: 150, height: 125),
+              child: widget.designSystem.getBrands().aOfficial(width: 150, height: 125),
             ),
           ),
         ));
@@ -112,14 +121,7 @@ class _LoginNativoState extends State<LoginNativo> {
       height: 50,
       child: ElevatedButton(
         child: Text("INICIAR SESSÃO"),
-        style: ElevatedButton.styleFrom(
-          primary: Colors.amber[800],
-          onPrimary: Colors.white,
-          textStyle: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        style: widget.designSystem.getStyles().elevatedButtonPrimary,
         onPressed: () {
           /*
           authValidate().then((response) {
@@ -132,56 +134,58 @@ class _LoginNativoState extends State<LoginNativo> {
           var businessModel = BusinessModel(sequence: 1, uid: '1', name: 'Venda Direta');
 
           LocalStorage.setBusinessUnit(BusinessUnit(company: company, country: country, businessModel: businessModel));
-          NavigatorNatura.pushHomeStart(context);
+          widget.natvigator.pushHomeStart(context);
         },
       ),
     );
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      body: Center(
-        child: Column(
-          children: [
-            logo,
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: inputUserName,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: passwordInput,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 50, top: 55),
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: new RichText(
-                          text: new TextSpan(
-                            children: [
-                              new TextSpan(
-                                text: 'Primeiro acesso ou Esqueci Minha Senha',
-                                style: new TextStyle(fontSize: 15, decoration: TextDecoration.underline, fontWeight: FontWeight.bold, color: Colors.grey.shade500),
-                              ),
-                            ],
+      body: Container(
+        color: widget.designSystem.getColors().background,
+        child: Center(
+          child: Column(
+            children: [
+              logo,
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: inputUserName,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: passwordInput,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 50, top: 55),
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: new RichText(
+                            text: new TextSpan(
+                              children: [
+                                new TextSpan(
+                                  text: 'Primeiro acesso ou Esqueci Minha Senha',
+                                  style: new TextStyle(fontSize: 15, decoration: TextDecoration.underline, fontWeight: FontWeight.bold, color: Colors.grey.shade500),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Center(child: flag)
-                  ],
+                      Center(child: flag)
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: enterButton,
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: enterButton,
+              ),
+            ],
+          ),
         ),
       ),
     );

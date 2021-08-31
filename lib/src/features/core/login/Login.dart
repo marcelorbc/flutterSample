@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gxp/generated/l10n.dart';
-import 'package:gxp/src/helpers/CountryConfig.dart';
-import 'package:gxp/src/helpers/LocalStorage.dart';
+import 'package:gxp/src/components/templates/widgets_core/stateful_widget_nat.dart';
+import 'package:gxp/src/designsystem/ds.dart';
+import 'package:gxp/src/helpers/country_config.dart';
+import 'package:gxp/src/helpers/local_storage.dart';
 import 'package:gxp/src/features/core/login/auth/LoginWebView.dart';
+import 'package:gxp/src/helpers/nativigator.dart';
 
 import 'countryList/ListaPaises.dart';
 import 'auth/LoginNativo.dart';
 
-class Login extends StatefulWidget {
+class Login extends StatefullWidgetNatura {
+  final DesignSystem designSystem;
+  final Natvigator natvigator;
+
+  Login({required this.natvigator, required this.designSystem}) : super(designSystem: designSystem);
+
   @override
   State<StatefulWidget> createState() => _LoginState();
 }
@@ -56,9 +64,7 @@ class _LoginState extends State<Login> {
                   child: ElevatedButton(
                     onPressed: () {},
                     child: Text("OK"),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.orangeAccent,
-                    ),
+                    style: widget.designSystem.getStyles().elevatedButtonPrimary,
                   ),
                 ),
               )
@@ -70,6 +76,8 @@ class _LoginState extends State<Login> {
       // ignore: dead_code
       if (true || CountryConfig.paises[pais]['auth'] == 'native') {
         widgetResult = LoginNativo(
+          natvigator: widget.natvigator,
+          designSystem: widget.designSystem,
           onSelectCountryToChange: () {
             setState(() {});
           },

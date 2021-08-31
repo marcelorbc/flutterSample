@@ -2,5 +2,6 @@
     "@@locale" : "en_US",
     "loginConsultantCode" : "Consultante ID",
     "loginPassword" : "Password",
-    "helloWorld" : "Hellow world enus"
+    "helloWorld" : "Hellow world enus",
+    "exitSession" : "Do you really want to end this session ?"
   }
