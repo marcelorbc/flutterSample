@@ -21,8 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "exitSession": MessageLookupByLibrary.simpleMessage(
-            "¿De verdad quieres terminar esta sesión?"),
         "helloWorld": MessageLookupByLibrary.simpleMessage("Hellow world es"),
         "loginConsultantCode":
             MessageLookupByLibrary.simpleMessage("Código da consultora"),

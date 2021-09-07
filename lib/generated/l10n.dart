@@ -79,16 +79,6 @@ class S {
       args: [],
     );
   }
-
-  /// `Do you really want to end this session ?`
-  String get exitSession {
-    return Intl.message(
-      'Do you really want to end this session ?',
-      name: 'exitSession',
-      desc: '',
-      args: [],
-    );
-  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
