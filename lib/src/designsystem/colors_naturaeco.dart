@@ -24,6 +24,9 @@ abstract class ColorsNaturaEco {
   /*Cards */
   Color get backgroundCard => ThemeData.light().cardColor;
 
+  /* Loading */
+  Color get loading => Colors.blueAccent;
+
   /* App Bar */
   Color get appBarBackground;
   Color get appBarBrand;
@@ -53,6 +56,9 @@ class ColorsNatura extends ColorsNaturaEco {
 
   Color get background => Colors.grey.shade200;
 
+  /* Loading */
+  Color get loading => Colors.orange;
+
   Color get icons => Colors.orange.shade800;
   Color get navigationAppBarButton => Colors.orange;
   Color get appBarText => Colors.black;
@@ -77,6 +83,9 @@ class ColorsNaturaDark extends ColorsNaturaEco {
   Color get background => ThemeData.dark().canvasColor;
   Color get backgroundCard => ThemeData.dark().cardColor;
 
+  /* Loading */
+  Color get loading => Colors.white;
+
   Color get icons => ThemeData.dark().buttonColor;
   Color get navigationAppBarButton => ThemeData.dark().buttonColor;
   Color get appBarBackground => ThemeData.dark().bottomAppBarColor;
@@ -100,6 +109,9 @@ class ColorsNaturaCo extends ColorsNaturaEco {
 
   Color get background => Colors.red;
 
+  /* Loading */
+  Color get loading => Colors.black;
+
   Color get icons => Colors.black;
   Color get navigationAppBarButton => Colors.white;
   Color get appBarBackground => Colors.black;
@@ -120,6 +132,9 @@ class ColorsAvon extends ColorsNaturaEco {
   Color get background => hex("F3F3F3");
   Color get icons => Colors.purple.shade700;
   Color get navigationAppBarButton => Colors.purple.shade700;
+
+  /* Loading */
+  Color get loading => Colors.purple;
 
   /* App Bar */
   Color get appBarBackground => Colors.white;
@@ -151,8 +166,11 @@ class ColorsTheBodyShop extends ColorsNaturaEco {
 
   Color get background => Colors.white;
 
+  /* Loading */
+  Color get loading => Colors.green.shade900;
+
   Color get icons => Colors.green.shade700;
-  Color get navigationAppBarButton => Colors.red;
+  Color get navigationAppBarButton => Colors.white;
 
   Color get appBarBackground => Colors.green.shade900;
   Color get appBarBottomline => Colors.black;

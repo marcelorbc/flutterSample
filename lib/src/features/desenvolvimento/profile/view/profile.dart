@@ -26,22 +26,25 @@ class _ProfileState extends State<ProfileUi> {
                   child: SizedBox(
                     width: double.infinity,
                     child: Card(
-                      color: Colors.grey.shade100,
+                      color: Colors.white,
                       child: Padding(
-                        padding: const EdgeInsets.all(55.0),
+                        padding: const EdgeInsets.all(2.0),
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 40, bottom: 25.0),
-                              child: Text("Nome consultora", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+                              padding: const EdgeInsets.only(top: 90, bottom: 25.0),
+                              child: Text("Nome consultora", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ValueText("Código", "24758956"),
-                                ValueText("Sector", "3254"),
-                                ValueText("Líder", "Alva Castillo"),
-                              ],
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ValueText("Código", "24758956"),
+                                  ValueText("Sector", "3254"),
+                                  ValueText("Líder", "Alva Castillo"),
+                                ],
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(10.0),
@@ -102,20 +105,17 @@ class _ProfileState extends State<ProfileUi> {
   }
 
   ValueText(String s, String t) => Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(2),
         child: Container(
-          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(7), border: Border.all(width: 1, color: Colors.grey.shade300)),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(7), border: Border.all(width: 0.5, color: Colors.grey.shade300)),
           child: Padding(
-            padding: const EdgeInsets.all(2.0),
+            padding: const EdgeInsets.all(1.0),
             child: Column(
               children: [
                 Text(s, style: TextStyle(fontSize: 12)),
                 Padding(
                   padding: const EdgeInsets.all(2.0),
-                  child: Text(
-                    t,
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
+                  child: Text(t, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),

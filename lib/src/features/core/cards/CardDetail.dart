@@ -3,6 +3,8 @@ import 'package:gxp/src/designsystem/ds.dart';
 import 'package:gxp/src/features/core/cards/CardArguments.dart';
 import 'package:gxp/src/components/templates/pages/PageWithTopAndBottomBars.dart';
 import 'package:gxp/src/helpers/nativigator.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CardDetail extends StatelessWidget {
   final CardArguments arguments;
@@ -13,7 +15,9 @@ class CardDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(" card detail 2");
+    Map<String, Style> stylesCss = Map<String, Style>();
+    stylesCss["*"] = Style(fontSize: FontSize(16));
+
     return PageWithTopAndBottomBars(
       designSystem,
       natvigator: natvigator,
@@ -21,18 +25,35 @@ class CardDetail extends StatelessWidget {
       child: Hero(
         tag: arguments.tagId,
         child: Card(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: SizedBox(
-                  height: 301,
-                  width: double.infinity,
-                  child: arguments.cardImage,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(0.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: arguments.cardImage,
+                  ),
                 ),
-              ),
-              Text(arguments.title),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    arguments.title,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Html(
+                    data: arguments.text,
+                    style: stylesCss,
+                    onLinkTap: (url, _, __, ___) {
+                      launch(url!);
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

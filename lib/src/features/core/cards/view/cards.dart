@@ -28,7 +28,7 @@ class _CardsState extends State<Cards> {
       Uri.parse('https://apigw-proxy-gke-prd-sp-ssl.naturacloud.com/cards/card/user?key=AIzaSyB93O8z6HurOKauoyhuaavsS_Q5uRTkAHU'),
       headers: {
         "country": "BR",
-        "userid": "122685571",
+        "userid": "180541684",
         "clientid": "a9df5608-3ee0-3c45-b305-84ec53797449",
       },
     ).then((response) {
@@ -43,7 +43,19 @@ class _CardsState extends State<Cards> {
 
   @override
   Widget build(BuildContext context) {
-    var children = <Widget>[Center(child: Text("Carregando"))];
+    var children = <Widget>[
+      Center(
+        child: SizedBox(
+          width: 17,
+          height: 17,
+          child: Center(
+            child: CircularProgressIndicator(
+              color: widget.designSystem.getColors().loading,
+            ),
+          ),
+        ),
+      )
+    ];
 
     if (this.cardsLoaded) {
       var cardsWidgets = <CardTemplateNatura>[];

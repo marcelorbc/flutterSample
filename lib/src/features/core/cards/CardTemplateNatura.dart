@@ -3,7 +3,7 @@ import 'package:gxp/src/components/templates/widgets_core/stateful_widget_nat.da
 import 'package:gxp/src/designsystem/ds.dart';
 import 'package:gxp/src/features/core/cards/CardArguments.dart';
 import 'package:gxp/src/helpers/nativigator.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CardTemplateNatura extends StatefullWidgetNatura {
   final String id;
@@ -24,38 +24,49 @@ class _CardTemplateNaturaState extends State<CardTemplateNatura> {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
-    Widget? cardImage;
 
     children.add(ListTile(
       leading: (widget.icon == null ? null : CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: NetworkImage(widget.icon!))),
-      title: Html(data: widget.title),
-      subtitle: Text(widget.subTitle),
+      title: Text(
+        widget.title,
+        style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+      ),
+      subtitle: Text(
+        widget.subTitle,
+        style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+      ),
     ));
 
     if (null != widget.image) {
+      Widget? cardImage = CachedNetworkImage(imageUrl: widget.image!);
       children.add(InkWell(
         onTap: () {
           widget.natvigator.pushCardDetail(context,
               arguments: CardArguments(
                 title: widget.title,
-                cardImage: Image.network(widget.image!),
+                subTitle: widget.subTitle,
+                text: widget.text,
+                cardImage: cardImage,
                 tagId: 'card ${widget.id}',
               ));
         },
         child: Padding(
-          padding: const EdgeInsets.all(1.0),
+          padding: EdgeInsets.all(2.0),
           child: SizedBox(
-            height: 200,
             width: double.infinity,
-            child: Image.network(widget.image!),
+            child: CachedNetworkImage(
+              placeholder: (context, url) => SizedBox(width: 17, height: 17, child: Center(child: CircularProgressIndicator(color: widget.designSystem.getColors().appBarBackground))),
+              imageUrl: widget.image!,
+            ),
           ),
         ),
       ));
     }
 
     children.add(Padding(
-      padding: EdgeInsets.all(5),
-      child: Text(widget.text,
+      padding: EdgeInsets.only(top: 15, bottom: 15),
+      child: Text(
+        widget.subTitle,
         style: TextStyle(fontSize: 11),
       ),
     ));

@@ -94,8 +94,8 @@ class _PageWithTopAndBottomBarsStateTheBodyShop extends _PageWithTopAndBottomBar
   @override
   SizedBox getLogoAppBar() {
     return SizedBox(
-      width: 200,
-      height: 50,
+      width: 150,
+      height: 40,
       child: widget.designSystem.getBrands().aCustom(width: 100, height: 40, color: widget.designSystem.getColors().appBarBrand),
     );
   }

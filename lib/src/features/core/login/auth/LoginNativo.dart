@@ -68,7 +68,7 @@ class _LoginNativoState extends State<LoginNativo> {
     var pais = LocalStorage.getValueString('country');
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: widget.designSystem.getColors().appBarBackground, //or set color with: Color(0xFF0000FF)
+      statusBarColor: widget.designSystem.getColors().background, //or set color with: Color(0xFF0000FF)
     ));
 
     TextField inputUserName = TextField(

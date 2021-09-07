@@ -45,12 +45,15 @@ class MenuDrawer extends StatelessWidgetNatura {
                   child: authResponse == null || authResponse.image.isEmpty ? Text(authResponse!.name.substring(0, 1)) : null,
                 ),
               ),
-              MenuTilesWidget(
-                natvigator: natvigator,
-                designSystem: designSystem,
-                businessUnit: businessUnit,
-                loadMenu: loadMenu,
-                generateListView: false,
+              SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: MenuTilesWidget(
+                  natvigator: natvigator,
+                  designSystem: designSystem,
+                  businessUnit: businessUnit,
+                  loadMenu: loadMenu,
+                  generateListView: false,
+                ),
               )
             ],
           ),

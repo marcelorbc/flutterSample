@@ -28,23 +28,25 @@ class ShortcutsNatura extends StatelessWidget {
           ],
         );
 
-    var shortcutsContainer = Opacity(
-      opacity: opacityLevel,
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 10, bottom: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              shortcut("Novo Pedido", designSystem.getIcons().outlinedActionNewrequest(color: designSystem.getColors().shortcutIcon), () => natvigator.pushOrder(context)),
-              shortcut("Divulgação", designSystem.getIcons().outlinedProductChildish(color: designSystem.getColors().shortcutIcon), () => natvigator.pushOrder(context)),
-              shortcut("Perfil", designSystem.getIcons().outlinedSocialPerson(color: designSystem.getColors().shortcutIcon), () => natvigator.pushProfile(context)),
-              shortcut("Entretenimento", designSystem.getIcons().outlinedContentExchangereports(color: designSystem.getColors().shortcutIcon), () => natvigator.pushOrder(context)),
-            ],
-          ),
-        ),
-      ),
-    );
+    var shortcutsContainer = opacityLevel <= 0
+        ? Container()
+        : Opacity(
+            opacity: opacityLevel,
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    shortcut("Novo Pedido", designSystem.getIcons().outlinedActionNewrequest(color: designSystem.getColors().shortcutIcon), () => natvigator.pushOrder(context)),
+                    shortcut("Divulgação", designSystem.getIcons().outlinedProductChildish(color: designSystem.getColors().shortcutIcon), () => natvigator.pushOrder(context)),
+                    shortcut("Perfil", designSystem.getIcons().outlinedSocialPerson(color: designSystem.getColors().shortcutIcon), () => natvigator.pushProfile(context)),
+                    shortcut("Entretenimento", designSystem.getIcons().outlinedContentExchangereports(color: designSystem.getColors().shortcutIcon), () => natvigator.pushOrder(context)),
+                  ],
+                ),
+              ),
+            ),
+          );
 
     return shortcutsContainer;
   }

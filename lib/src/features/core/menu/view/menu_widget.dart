@@ -29,9 +29,9 @@ class _MenuState extends State<MenuWidget> {
         ),
         title: Text(
           "Menu",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontFamily: "Roboto"),
+          style: TextStyle(color: widget.designSystem.getColors().appBarText, fontWeight: FontWeight.w700, fontFamily: "Roboto"),
         ),
-        backgroundColor: Colors.grey.shade100,
+        backgroundColor: widget.designSystem.getColors().appBarBackground,
       ),
       body: Container(
         alignment: Alignment.center,

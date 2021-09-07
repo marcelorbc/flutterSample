@@ -16,7 +16,7 @@ abstract class Styles {
   ButtonStyle get shortcutStyle => ElevatedButton.styleFrom(
         shape: CircleBorder(),
         primary: designSystem.getColors().shortcutBackground,
-        padding: EdgeInsets.all(22),
+        padding: EdgeInsets.all(14),
         shadowColor: Colors.black,
         elevation: 1,
       );
