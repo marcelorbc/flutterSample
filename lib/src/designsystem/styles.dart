@@ -9,8 +9,12 @@ abstract class Styles {
   ButtonStyle get elevatedButtonPrimary;
 
   /* Dialog exit */
-  ButtonStyle get dialogExitSessionElevatedButtonCancel => ElevatedButton.styleFrom(primary: Colors.black, textStyle: TextStyle(color: Colors.white));
-  ButtonStyle get dialogExitSessionElevatedButtonConfirm => ElevatedButton.styleFrom(primary: Colors.white, textStyle: TextStyle(color: Colors.black));
+  ButtonStyle get dialogExitSessionElevatedButtonCancel =>
+      ElevatedButton.styleFrom(
+          primary: Colors.black, textStyle: TextStyle(color: Colors.white));
+  ButtonStyle get dialogExitSessionElevatedButtonConfirm =>
+      ElevatedButton.styleFrom(
+          primary: Colors.white, textStyle: TextStyle(color: Colors.black));
 
   /*Shortcut Text Style */
   ButtonStyle get shortcutStyle => ElevatedButton.styleFrom(
@@ -25,9 +29,14 @@ abstract class Styles {
 class StylesNatura extends Styles {
   StylesNatura(DesignSystem naturaDS) : super(naturaDS);
 
-  ButtonStyle get elevatedButtonPrimary => ElevatedButton.styleFrom(primary: Colors.amber[800], onPrimary: Colors.white, textStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold));
-  ButtonStyle get dialogExitSessionElevatedButtonCancel => ElevatedButton.styleFrom(primary: Colors.orange.shade800);
-  ButtonStyle get dialogExitSessionElevatedButtonConfirm => ElevatedButton.styleFrom(primary: Colors.white);
+  ButtonStyle get elevatedButtonPrimary => ElevatedButton.styleFrom(
+      primary: Colors.amber[800],
+      onPrimary: Colors.white,
+      textStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold));
+  ButtonStyle get dialogExitSessionElevatedButtonCancel =>
+      ElevatedButton.styleFrom(primary: Colors.orange.shade800);
+  ButtonStyle get dialogExitSessionElevatedButtonConfirm =>
+      ElevatedButton.styleFrom(primary: Colors.white);
 }
 
 class StylesNaturaDark extends Styles {
@@ -41,8 +50,10 @@ class StylesNaturaDark extends Styles {
           fontWeight: FontWeight.bold,
         ),
       );
-  ButtonStyle get dialogExitSessionElevatedButtonCancel => ElevatedButton.styleFrom(primary: Colors.black);
-  ButtonStyle get dialogExitSessionElevatedButtonConfirm => ElevatedButton.styleFrom(primary: Colors.white);
+  ButtonStyle get dialogExitSessionElevatedButtonCancel =>
+      ElevatedButton.styleFrom(primary: Colors.black);
+  ButtonStyle get dialogExitSessionElevatedButtonConfirm =>
+      ElevatedButton.styleFrom(primary: Colors.white);
 }
 
 class StylesNaturaCo extends Styles {
@@ -69,8 +80,10 @@ class StylesAvon extends Styles {
           fontWeight: FontWeight.bold,
         ),
       );
-  ButtonStyle get dialogExitSessionElevatedButtonCancel => ElevatedButton.styleFrom(primary: Colors.purple.shade800);
-  ButtonStyle get dialogExitSessionElevatedButtonConfirm => ElevatedButton.styleFrom(primary: Colors.white);
+  ButtonStyle get dialogExitSessionElevatedButtonCancel =>
+      ElevatedButton.styleFrom(primary: Colors.purple.shade800);
+  ButtonStyle get dialogExitSessionElevatedButtonConfirm =>
+      ElevatedButton.styleFrom(primary: Colors.white);
 }
 
 class StylesTheBodyShop extends Styles {
@@ -85,8 +98,10 @@ class StylesTheBodyShop extends Styles {
         ),
       );
 
-  ButtonStyle get dialogExitSessionElevatedButtonCancel => ElevatedButton.styleFrom(primary: Colors.green.shade800);
-  ButtonStyle get dialogExitSessionElevatedButtonConfirm => ElevatedButton.styleFrom(primary: Colors.white);
+  ButtonStyle get dialogExitSessionElevatedButtonCancel =>
+      ElevatedButton.styleFrom(primary: Colors.green.shade800);
+  ButtonStyle get dialogExitSessionElevatedButtonConfirm =>
+      ElevatedButton.styleFrom(primary: Colors.white);
 }
 
 class StylesAesop extends Styles {

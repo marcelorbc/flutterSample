@@ -11,18 +11,28 @@ class ShortcutsNatura extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var style = ElevatedButton.styleFrom(
+      shape: CircleBorder(),
+      primary: designSystem.getColors().shortcutBackground,
+      padding: EdgeInsets.all(14 * opacityLevel),
+      shadowColor: Colors.black,
+      elevation: 1,
+    );
     var shortcut = (text, icon, onTap) => Column(
           children: [
             ElevatedButton(
               onPressed: onTap,
               child: icon,
-              style: designSystem.getStyles().shortcutStyle,
+              style: style,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 7),
               child: Text(
                 text,
-                style: TextStyle(fontSize: 11, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             )
           ],
@@ -34,7 +44,10 @@ class ShortcutsNatura extends StatelessWidget {
             opacity: opacityLevel,
             child: Container(
               child: Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 10,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
